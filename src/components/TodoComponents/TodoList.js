@@ -5,10 +5,16 @@ import Todo from './Todo';
 
 const TodoList = props => {
     return (
-        <div className="list">
-            
-            
-        </div>
+        <div>
+      {props.todos.map(todo => (
+        <Todo
+          
+          key={todo.id}
+          todo={todo}
+          handleToggleComplete={props.handleToggleComplete}
+        />
+      ))}
+    </div>
     );
 };
 

@@ -55,6 +55,19 @@ class App extends React.Component {
     this.setState({ todos });
   };
 
+  addTodo = e => {
+    e.preventDefault();
+    const todos = this.state.todos.slice();
+    todos.push({
+      task: this.state.todo,
+      completed: false,
+      id: Date.now()
+    });
+    this.setState({ todos, todo: "" });
+  };
+
+  changeTodo = e => this.setState({ [e.target.name]: e.target.value });
+
   clearCompletedTodos = e => {
     e.preventDefault();
     let todos = this.state.todos.filter(todo => !todo.completed);
@@ -65,8 +78,9 @@ class App extends React.Component {
     return (
       <div>
         <TodoList
-          handleToggleComplete={this.toggleTodoComplete}
           todos={this.state.todos}
+          handleToggleComplete={this.toggleTodoComplete}
+          
         />
         <TodoForm
           value={this.state.todo}
